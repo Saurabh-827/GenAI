@@ -83,7 +83,13 @@ predicted_probality = prediction[0][0]
 
 st.write(f'Churn Probability: {predicted_probality}')
 
-if predicted_probality > 0.5:
-    st.write('The customer is likely to churn')
-else:
-    st.write('The customer is unlikely to churn')
+if st.button("Predict"):
+    prediction = model.predict(input_data_scaled)
+    prediction_probability = prediction[0][0]
+
+    st.write(f"Churn Probability: {prediction_probability:.2f}")
+
+    if prediction_probability > 0.5:
+        st.error("The customer is likely to churn")
+    else:
+        st.success("The customer is not likely to churn")
