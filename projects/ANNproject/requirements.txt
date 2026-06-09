@@ -1,0 +1,9 @@
+# tensorflow==2.15.0   // kunki agar aise hi deploy kr deta to bahut jaayda gpu use hota
+#  500- 700 mb streamlit ka model thodi train krna h bas prediction karwana h cpu kaffi h 
+tensorflow-cpu==2.15.0
+pandas
+numpy
+scikit-learn
+tensorboard
+matplotlib
+streamlit
