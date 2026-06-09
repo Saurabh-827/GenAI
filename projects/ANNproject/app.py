@@ -2,21 +2,35 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+import os
 from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder
 import pickle
 
-# load the trained model
 
-model = tf.keras.models.load_model('model.h5')
+# NOTE :  I got error of directory not found while deploying on streamlit so i am taking further numbered steps 
+
+# 1. Ye line app.py ka current exact folder path nikal legi
+working_dir = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Ab hum saari files ka poora (absolute) rasta banayenge
+model_path = os.path.join(working_dir, 'model.h5')
+scaler_path = os.path.join(working_dir, 'scaler.pkl')
+label_encoder_gender_path = os.path.join(working_dir,'label_encoder_gender.pkl')
+onehot_encoder_geo_path = os.path.join(working_dir, 'onehot_encoder_geo.pkl')
+
+# 3. Ab unhe safely load karenge
+
+# load the trained model
+model = tf.keras.models.load_model(model_path)
 
 #  load 
-with open('scaler.pkl', 'rb') as f:
+with open(scaler_path, 'rb') as f:
     scaler = pickle.load(f)
 
-with open('label_encoder_gender.pkl', 'rb') as file:
+with open(label_encoder_gender_path, 'rb') as file:
     label_encoder_gender = pickle.load(file)
 
-with open('onehot_encoder_geo.pkl', 'rb') as file:
+with open(onehot_encoder_geo_path, 'rb') as file:
     onehot_encoder_geo = pickle.load(file)
 
 #streamlit app
