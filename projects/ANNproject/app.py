@@ -79,10 +79,8 @@ input_data_scaled = scaler.transform(input_data)
 # Make prediction
 prediction = model.predict(input_data_scaled)
 predicted_probality = prediction[0][0]
+
 # Display the result
-
-st.write(f'Churn Probability: {predicted_probality}')
-
 if st.button("Predict"):
     prediction = model.predict(input_data_scaled)
     prediction_probability = prediction[0][0]
